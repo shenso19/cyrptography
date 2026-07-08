@@ -8,7 +8,6 @@
 #include <unordered_map>
 #include <vector>
 
-// Compute the SHA-1 digest of a string using OpenSSL
 std::array<uint8_t, SHA_DIGEST_LENGTH> sha1(const std::string& msg)
 {
     std::array<uint8_t, SHA_DIGEST_LENGTH> digest;
@@ -21,7 +20,6 @@ std::array<uint8_t, SHA_DIGEST_LENGTH> sha1(const std::string& msg)
     return digest;
 }
 
-// Return the first n bits of the SHA-1 digest (n <= 32)
 uint32_t sha1_truncated_bits(const std::string& msg, int n)
 {
     auto digest = sha1(msg);
@@ -39,7 +37,6 @@ uint32_t sha1_truncated_bits(const std::string& msg, int n)
     return value;
 }
 
-// Generate a random alphanumeric message
 std::string random_message(std::mt19937& rng, size_t length = 16)
 {
     static const char charset[] =
@@ -58,7 +55,6 @@ std::string random_message(std::mt19937& rng, size_t length = 16)
     return msg;
 }
 
-// One collision attack sample
 uint64_t collision_attack_sample(int n, std::mt19937& rng)
 {
     std::unordered_map<uint32_t, std::string> seen;
@@ -81,7 +77,6 @@ uint64_t collision_attack_sample(int n, std::mt19937& rng)
     }
 }
 
-// One preimage attack sample
 uint64_t preimage_attack_sample(int n,
                                 const std::string& target_message,
                                 std::mt19937& rng)
